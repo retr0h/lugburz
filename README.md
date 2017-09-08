@@ -1,4 +1,4 @@
-# lugburz
+# Lugbúrz
 
 > Barad-dûr, the “Dark Tower,” is a fictional place in J. R. R. Tolkien's Middle-earth writings and is described in The Lord 
 of the Rings, The Silmarillion, and other works. It is an enormous fortress of the Dark Lord Sauron, whence he rules the 
@@ -9,3 +9,7 @@ Barad-dûr was called "Lugbúrz" in the Black Speech of Mordor, which also trans
 Lug = Tower and Búrz = Dark.
 
 https://en.wikipedia.org/wiki/Barad-dûr
+
+## License
+
+MIT
