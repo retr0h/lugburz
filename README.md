@@ -10,6 +10,13 @@ Lug = Tower and Búrz = Dark.
 
 https://en.wikipedia.org/wiki/Barad-dûr
 
+## Building
+
+    $ go get github.com/golang/dep/cmd/dep
+    $ go get github.com/laher/goxc
+    $ make build
+    $ tree build/
+
 ## License
 
 MIT
