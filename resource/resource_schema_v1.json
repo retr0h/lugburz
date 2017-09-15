@@ -1,0 +1,76 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "type": "object",
+    "required": [
+        "apiVersion",
+        "kind",
+        "spec"
+    ],
+    "additionalProperties": false,
+    "properties": {
+        "apiVersion": {
+            "default": "v1",
+            "type": "string",
+            "pattern": "^v1$"
+        },
+        "kind": {
+            "default": "Resource",
+            "type": "string",
+            "pattern": "^Resource$"
+        },
+        "spec": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "containers"
+            ],
+            "properties": {
+                "containers": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "required": [
+                            "name",
+                            "image",
+                            "command",
+                            "env"
+                        ],
+                        "properties": {
+                            "name": {
+                                "type": "string"
+                            },
+                            "image": {
+                                "type": "string"
+                            },
+                            "command": {
+                                "type": "string"
+                            },
+                            "env": {
+                                "type": "array",
+                                "items": {
+                                    "type": "object",
+                                    "additionalProperties": false,
+                                    "required": [
+                                        "name",
+                                        "value"
+                                    ],
+                                    "properties": {
+                                        "name": {
+                                            "type": "string",
+                                            "pattern": "^[A-Z0-9_]*$"
+                                        },
+                                        "value": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

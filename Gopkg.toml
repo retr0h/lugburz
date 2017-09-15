@@ -3,3 +3,9 @@
 
 [[constraint]]
   name = "github.com/spf13/cobra"
+
+[[constraint]]
+  name = "github.com/stretchr/testify"
+
+[[constraint]]
+  name = "gopkg.in/yaml.v2"
