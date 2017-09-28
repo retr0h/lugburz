@@ -78,10 +78,7 @@ func (r *Resource) UnmarshalYAML(data []byte) error {
 	}
 
 	err = json.Unmarshal(jsonData, r)
-	if err != nil {
-		return err
-	}
-	return nil
+	return err
 }
 
 // UnmarshalYAMLFile reads the file named by filename and passes the source
@@ -93,10 +90,7 @@ func (r *Resource) UnmarshalYAMLFile(filename string) error {
 	}
 
 	err = r.UnmarshalYAML([]byte(source))
-	if err != nil {
-		return err
-	}
-	return nil
+	return err
 }
 
 // Validate the the data byte slice against the v1 JSON schema.
