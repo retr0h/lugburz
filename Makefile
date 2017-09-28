@@ -1,3 +1,5 @@
+PKGS ?= $(shell go list ./... | /usr/bin/grep -v /vendor/)
+PKGS_DELIM ?= $(shell echo $(PKGS) | sed -e 's/ /,/g')
 VENDOR := vendor
 BINDATA := go-bindata
 GITCOMMIT := $(shell git rev-parse --short HEAD)
@@ -14,6 +16,15 @@ LDFLAGS := \ -s \
 test: go-bindata-dev fmt lint vet
 	@echo "+ $@"
 	go test -covermode=count ./...
+
+cover:
+	@echo "+ $@"
+	$(shell [ -e cover.out ] && rm cover.out)
+	@go list -f '{{if or (len .TestGoFiles) (len .XTestGoFiles)}}go test -test.v -test.timeout=120s -covermode=count -coverprofile={{.Name}}_{{len .Imports}}_{{len .Deps}}.coverprofile -coverpkg $(PKGS_DELIM) {{.ImportPath}}{{end}}' $(PKGS) | xargs -I {} bash -c {}
+	@echo "mode: count" > cover.out
+	@grep -h -v "^mode:" *.coverprofile >> "cover.out"
+	@rm *.coverprofile
+	@go tool cover -html=cover.out -o=cover.html
 
 fmt:
 	@echo "+ $@"
