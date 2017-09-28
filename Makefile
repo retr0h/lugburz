@@ -1,4 +1,5 @@
 VENDOR := vendor
+BINDATA := bindata/go-bindata
 GITCOMMIT := $(shell git rev-parse --short HEAD)
 GITUNTRACKEDCHANGES := $(shell git status --porcelain --untracked-files=no)
 ifneq ($(GITUNTRACKEDCHANGES),)
@@ -30,6 +31,7 @@ vet:
 clean:
 	@echo "+ $@"
 	@rm -rf ./build
+	@rm -f ${BINDATA}
 
 build: clean go-bindata
 	@echo "+ $@"
@@ -38,10 +40,16 @@ build: clean go-bindata
 		-ldflags="${LDFLAGS}" \
 		-output="build/{{.Dir}}_{{.OS}}_{{.Arch}}"
 
-go-bindata:
-	@echo "+ $@"
-	go-bindata -pkg resource -o resource/asset.go resource/resource_schema_v1.json
+${BINDATA}:
+	go build -o $@ ./vendor/github.com/jteeuwen/go-bindata/go-bindata/...
 
-go-bindata-dev:
+.PHONY: build-bindata
+build-bindata: ${BINDATA}
+
+go-bindata: ${BINDATA}
 	@echo "+ $@"
-	go-bindata -debug -pkg resource -o resource/asset.go resource/resource_schema_v1.json
+	${BINDATA} -pkg resource -o resource/asset.go resource/resource_schema_v1.json
+
+go-bindata-dev: ${BINDATA}
+	@echo "+ $@"
+	${BINDATA} -debug -pkg resource -o resource/asset.go resource/resource_schema_v1.json

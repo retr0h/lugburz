@@ -26,6 +26,12 @@
   version = "v1.0"
 
 [[projects]]
+  name = "github.com/jteeuwen/go-bindata"
+  packages = ["."]
+  revision = "bbd0c6e271208dce66d8fda4bc536453cd27fc4a"
+  version = "v3.0.7"
+
+[[projects]]
   name = "github.com/pmezard/go-difflib"
   packages = ["difflib"]
   revision = "792786c7400a136282c1664665ae0a8db921c6c2"
@@ -88,6 +94,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "7b61032088ef88435b2b33e197f3a634ac16f3f3b2cf18b250558df8204bf551"
+  inputs-digest = "384ff2c6653f20a7951adea4212d3750a53981df8364eb061df90c6d5d296250"
   solver-name = "gps-cdcl"
   solver-version = 1
