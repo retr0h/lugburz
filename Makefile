@@ -17,7 +17,7 @@ test: go-bindata-dev fmt lint vet
 
 fmt:
 	@echo "+ $@"
-	@gofmt -s -l . | grep -v $(VENDOR) | tee /dev/stderr
+	@gofmt -s -l . | grep -v $(VENDOR) | grep -v resource/asset.go | tee /dev/stderr
 
 lint:
 	@echo "+ $@"
