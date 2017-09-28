@@ -27,7 +27,7 @@ https://en.wikipedia.org/wiki/Barad-dûr
 ## Building
 
     $ make build
-    $ tree build/
+    $ tree .build/
 
 ## Testing
 
